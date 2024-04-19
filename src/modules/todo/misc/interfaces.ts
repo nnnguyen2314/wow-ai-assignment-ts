@@ -9,7 +9,7 @@ export interface ITodo {
     title: string;
     description?: string;
     completed: boolean;
-    startedDate?: string;
+    startedDate?: any;
 }
 
 export interface ITodoItemProps {

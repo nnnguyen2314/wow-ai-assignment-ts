@@ -1,8 +1,9 @@
 import React from 'react';
-import { Tooltip, List, Button, Popconfirm, Switch, message } from 'antd';
+import {Tooltip, List, Button, Popconfirm, Switch, message, Space} from 'antd';
 import {CloseOutlined, CheckOutlined, EditOutlined} from '@ant-design/icons';
 import {ITodoItemProps} from "../../misc/interfaces";
 import QueueAnim from 'rc-queue-anim';
+import dayjs from "dayjs";
 
 const TodoListItem = (props: ITodoItemProps) => {
     const { todo, onRemoveTodo, onCompletedToggle, onEditTodo } = props;
@@ -45,7 +46,19 @@ const TodoListItem = (props: ITodoItemProps) => {
             >
                 <List.Item.Meta
                     title={todo.title}
-                    description={todo.description}
+                    description={
+                        <div>
+                            <p>
+                                <Space>
+                                    <label>Started Date:</label>
+                                    <label>{dayjs(todo.startedDate).format('YYYY/MM/DD')}</label>
+                                </Space>
+                            </p>
+                            <p>
+                                {todo.description}
+                            </p>
+                        </div>
+                    }
                 />
             </List.Item>
         </QueueAnim>

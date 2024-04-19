@@ -14,10 +14,10 @@ interface IAddTodoFormProps {
 
 const AddTodoForm = (props: IAddTodoFormProps) => {
     const [form] = Form.useForm();
-    const [startedDate, setStartedDate] = useState(moment());
+    const [startedDate, setStartedDate] = useState(dayjs());
 
     const onStartedDateChange: DatePickerProps['onChange'] = (date, dateString) => {
-        setStartedDate(moment(dateString));
+        setStartedDate(dayjs(date));
     };
 
     const onFinish = () => {
@@ -25,7 +25,7 @@ const AddTodoForm = (props: IAddTodoFormProps) => {
             title: form.getFieldValue('title'),
             description: form.getFieldValue('description'),
             completed: false,
-            startedDate: startedDate ? moment().format('YYYY-mm-dd') : moment(startedDate).format('YYYY-mm-dd')
+            startedDate: startedDate ? dayjs(startedDate) : dayjs()
         };
 
         if (props.todo) {
@@ -52,7 +52,7 @@ const AddTodoForm = (props: IAddTodoFormProps) => {
                 <Input placeholder="What needs to be done?" />
             </Form.Item>
             <Form.Item label="Start Date">
-                <DatePicker onChange={onStartedDateChange} />
+                <DatePicker defaultValue={props?.todo?.startedDate ? dayjs(props?.todo?.startedDate) : dayjs()} onChange={onStartedDateChange} />
             </Form.Item>
             <Form.Item
                 label="Description"
