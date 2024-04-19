@@ -2,7 +2,6 @@ import React from 'react';
 import { List } from 'antd';
 import {ITodo} from "../../misc/interfaces";
 import TodoListItem from './TodoListItem';
-import QueueAnim from 'rc-queue-anim';
 
 interface ITodoListProps {
     todoList: ITodo[];
